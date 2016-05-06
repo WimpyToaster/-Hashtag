@@ -2,6 +2,8 @@
 #define _FUNCOES_AUX_
 
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "ArvoreBinaria.h"
 #include "Item.h"
 
