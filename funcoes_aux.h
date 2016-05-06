@@ -1,7 +1,7 @@
 #ifndef _FUNCOES_AUX_
 #define _FUNCOES_AUX_
 
-#include "funcoes_aux.c"
+#include <string.h>
 
 void avalia_hash(char *token);
 void split(char *line);
