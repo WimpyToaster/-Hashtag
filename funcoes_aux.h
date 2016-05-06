@@ -10,5 +10,6 @@ extern link global_h;
 extern Item Maior;
 
 void avalia_hash(char *token);
+void counting_sort(int *a, int vec_len, int M);
 
 #endif
