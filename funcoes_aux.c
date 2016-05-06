@@ -1,6 +1,8 @@
 extern int Total_Hashtags;
+extern link global_h;
+extern Item Maior;
 
-void poe_hash(char *token)
+void avalia_hash(char *token)
 {
 
 	if (Total_Hashtags == 0)
@@ -11,6 +13,7 @@ void poe_hash(char *token)
 		primeira_hash.count = 1;
 		
 	    global_h = NovaArvore(primeira_hash, NULL, NULL);
+	    Maior = global_h->item;
 	    
 	}
 	else
@@ -18,20 +21,32 @@ void poe_hash(char *token)
 		
 		Item hash;
 		hash.tag = token;
-		link *existe = procura(global_h, hash);
+		link existe = procura(global_h, hash);
 		
 		if(existe == NULL) 
 		{
+			hash.count = 1;
+
 			global_h = insere(global_h, hash);
+			if(Maior.count == 1)
+			{
+				if(strcmp(Maior.tag, hash.tag) > 0)
+					Maior = hash;
+			}
 			Total_Hashtags++;
 		}
 		
 		else
 		{
-			existe -> count++;
+			existe->item.count++;
+
+			if(existe->item.count > Maior.count)
+				Maior = existe->item;
+
 		}
 	}
 }
+
 
 
 void split(char *line)
@@ -49,10 +64,10 @@ void split(char *line)
         token[i] = tolower(token[i]);
       }
 
-       poe_hash(token); // Tem de confirmar se foi inserido ou se ja exestia, no caso de ser inserido incrementa o Total_Hashtags
-      //compara_maior(token); // Compara com o Hashtag mais popular e confirma se passa a ser este o mais popular
-
-      }
+       avalia_hash(token); // Confirmar se a hashtag foi inserido ou se ja exestia, no caso de ser inserido incrementa o Total_Hashtags
+     
+     }
     token = strtok(NULL, separators);
   }
 }
+
