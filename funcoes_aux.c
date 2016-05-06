@@ -1,8 +1,6 @@
 #include "funcoes_aux.h"
-
-extern int Total_Hashtags;
-extern link global_h;
-extern Item Maior;
+#include "Item.h"
+#include "ArvoreBinaria.h"
 
 void avalia_hash(char *token)
 {
@@ -15,6 +13,7 @@ void avalia_hash(char *token)
 		primeira_hash.count = 1;
 		
 	    global_h = NewTree(primeira_hash, NULL, NULL);
+	    Total_Hashtags++;
 	    Maior = global_h->item;	    
 	}
 
@@ -47,29 +46,5 @@ void avalia_hash(char *token)
 
 		}
 	}
-}
-
-
-
-void split(char *line)
-{
-  char *token = strtok(line, separators);
-   while(token != NULL) 
-  {
-    if(token[0] == '#')
-    {
-      int i;
-      Total_Ocorrencias++;
-
-      for(i = 1; token[i] != '\0'; i++)
-      {
-        token[i] = tolower(token[i]);
-      }
-
-       avalia_hash(token); // Confirmar se a hashtag foi inserido ou se ja exestia, no caso de ser inserido incrementa o Total_Hashtags
-     
-     }
-    token = strtok(NULL, separators);
-  }
 }
 
