@@ -1,3 +1,5 @@
+#include "funcoes_aux.h"
+
 extern int Total_Hashtags;
 extern link global_h;
 extern Item Maior;
@@ -12,22 +14,22 @@ void avalia_hash(char *token)
 		primeira_hash.tag = token;
 		primeira_hash.count = 1;
 		
-	    global_h = NovaArvore(primeira_hash, NULL, NULL);
-	    Maior = global_h->item;
-	    
+	    global_h = NewTree(primeira_hash, NULL, NULL);
+	    Maior = global_h->item;	    
 	}
+
 	else
 	{
 		
 		Item hash;
 		hash.tag = token;
-		link existe = procura(global_h, hash);
+		link existe = search(global_h, hash);
 		
 		if(existe == NULL) 
 		{
 			hash.count = 1;
 
-			global_h = insere(global_h, hash);
+			global_h = insert(global_h, hash);
 			if(Maior.count == 1)
 			{
 				if(strcmp(Maior.tag, hash.tag) > 0)
@@ -50,7 +52,7 @@ void avalia_hash(char *token)
 
 
 void split(char *line)
- {
+{
   char *token = strtok(line, separators);
    while(token != NULL) 
   {
@@ -59,7 +61,7 @@ void split(char *line)
       int i;
       Total_Ocorrencias++;
 
-      for(i = 1; token[i]; i++)
+      for(i = 1; token[i] != '\0'; i++)
       {
         token[i] = tolower(token[i]);
       }
