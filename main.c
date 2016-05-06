@@ -54,7 +54,7 @@ int main()
           //Imprime todas as Hashtags e respetivos n de ocorrencias por ordem decrescente (em caso de empate, por ordem alfabetica)
           for (i = 0; i < Total_Hashtags; ++i)
           {
-            //printf("%s %d\n", nome_hash_ord(i), numero_ocor_ord(i));
+            //printf("%s %d\n", v[i], v[i]);
           }
           break;
                     
@@ -79,13 +79,15 @@ void split(char *line)
     if(token[0] == '#')
     {
       Total_Ocorrencias++;
-      avalia_hash(token); // Confirmar se a hashtag foi inserido ou se ja exestia, no caso de ser inserido incrementa o Total_Hashtags
+      
       int i;
 
       for(i = 1; token[i] != '\0'; i++)
       {
         token[i] = tolower(token[i]);
-      }      
+      } 
+           
+      avalia_hash(token); // Confirmar se a hashtag foi inserido ou se ja exestia, no caso de ser inserido incrementa o Total_Hashtags
     }
     token = strtok(NULL, separators);
   }
