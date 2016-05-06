@@ -8,37 +8,10 @@
 int Total_Hashtags;
 int Total_Ocorrencias; // Counting Sort na Arvore    ->    M = Total_Ocorrencias
 Item Maior;
-
-
-
-
+link global_h = NULL;
 static const char separators[] = {' ', '\t',',',';','.','?','!','"','\n',':','\0'};
 
- void split(char *line)
- {
-  char *token = strtok(line, separators);
-   while(token != NULL) 
-  {
-    if(token[0] == '#')
-    {
-      int i;
-
-      Total_Ocorrencias++;
-
-      for(i = 1; token[i]; i++)
-      {
-        token[i] = tolower(token[i]);
-      }
-
-      insere(token); // Tem de confirmar se foi inserido ou se ja exestia, no caso de ser inserido incrementa o Total_Hashtags
-      compara_maior(token); // Compara com o Hashtag mais popular e confirma se passa a ser este o mais popular
-
-      }
-    token = strtok(NULL, separators);
-  }
-}
-
-
+ 
 
  int main()
  {
@@ -69,7 +42,7 @@ static const char separators[] = {' ', '\t',',',';','.','?','!','"','\n',':','\0
         
         case 'm':   
           
-          printf("%s %d\n",  Maior->tag, Maior->count);
+          printf("%s %d\n",  Maior.tag, Maior.count);
           break;
         
         case 'l':   
@@ -77,7 +50,7 @@ static const char separators[] = {' ', '\t',',',';','.','?','!','"','\n',':','\0
           int i;	
           for (i = 0; i < Total_Hashtags; ++i)
           {
-          	printf("%s %d\n", nome_hash(i), numero_ocor(i));
+          	printf("%s %d\n", nome_hash_ord(i), numero_ocor_ord(i));
           }
           break;
                     
@@ -93,4 +66,3 @@ static const char separators[] = {' ', '\t',',',';','.','?','!','"','\n',':','\0
     return 0;
     
   }
-
