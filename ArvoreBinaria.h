@@ -1,10 +1,7 @@
 #ifndef _ITEM_
 #define _ITEM_
-#ifndef _stdlib_
-#define _stdlib_ 
 
-#include <stdlib.h> 
-#include "ArvoreBinaria.c"
+#include <stdlib.h>
 
 typedef struct node {
 	
@@ -13,13 +10,17 @@ typedef struct node {
   struct node *r; 
 
 } *link;
- 
-static link head = NULL; 
 
-link NovaArvore(Item item, link l, link r);
-link procura(link h, Item v);
-link insere(link h, Item item);
-int altura(link h);
 
-#endif
+link NewTree(Item item, link l, link r);
+link search(link h, Item v);
+link insert(link h, Item item);
+int height(link h);
+link rotL(link h);
+link rotR(link h);
+link rotLR(link h);
+link rotRL(link h);
+int Balance(link h);
+link AVLbalance(link h);
+
 #endif
