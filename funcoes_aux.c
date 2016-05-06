@@ -1,6 +1,8 @@
 #include "funcoes_aux.h"
 #include "Item.h"
 #include "ArvoreBinaria.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 void avalia_hash(char *token)
 {
@@ -49,3 +51,29 @@ void avalia_hash(char *token)
 	}
 }
 
+
+void counting_sort(int *a, int vec_len, int M)
+{    
+	/* keys go from 0 to M, neste caso é o numero de ocurrencias maximo! */
+
+	int i, j, cnt[M];
+	int *b = (int*)malloc(sizeof(int)*vec_len);
+	
+	for (j = 0; j < M; j++) /* inicializao do vetor auxiliar a 0 */
+		cnt[j] = 0;
+		
+	for (i = 0; i < vec_len; i++) /* construcao do histograma */
+		cnt[a[i]+1]++;
+	
+	for (j = 1; j < M; j++) /* soma acumulativa do histograma */
+		cnt[j] += cnt[j-1];
+	
+	for (i = 0; i < vec_len; i++) /* construcao do vetor auxiliar */
+		b[cnt[a[i]]++] = a[i];
+	
+	for (i = 0; i < vec_len; i++)
+		a[i] = b[i]; 
+
+	free(b);
+
+}
