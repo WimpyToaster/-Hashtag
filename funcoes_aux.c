@@ -6,8 +6,7 @@ void avalia_hash(char *token)
 {
 
 	if (Total_Hashtags == 0)
-	{
-	
+	{	
 		Item primeira_hash;
 		primeira_hash.tag = token;
 		primeira_hash.count = 1;
@@ -29,18 +28,20 @@ void avalia_hash(char *token)
 			hash.count = 1;
 
 			global_h = insert(global_h, hash);
+			Total_Hashtags++;
+			
 			if(Maior.count == 1)
 			{
 				if(strcmp(Maior.tag, hash.tag) > 0)
 					Maior = hash;
 			}
-			Total_Hashtags++;
+			
 		}
 		
 		else
 		{
 			existe->item.count++;
-
+			
 			if(existe->item.count > Maior.count)
 				Maior = existe->item;
 
