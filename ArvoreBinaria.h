@@ -1,11 +1,13 @@
-#ifndef _ITEM_
-#define _ITEM_
+#ifndef _ARVOREBINARIA_
+#define _ARVOREBINARIA_
 
+#include "Item.h"
 #include <stdlib.h>
 
 typedef struct node {
 	
   Item item; 
+  int height;
   struct node *l; 
   struct node *r; 
 
