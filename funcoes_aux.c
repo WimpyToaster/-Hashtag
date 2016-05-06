@@ -1,8 +1,4 @@
 #include "funcoes_aux.h"
-#include "Item.h"
-#include "ArvoreBinaria.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 void avalia_hash(char *token)
 {
