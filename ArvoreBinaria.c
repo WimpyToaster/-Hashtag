@@ -1,4 +1,5 @@
 #include "ArvoreBinaria.h"
+#include "Item.h"
 
 link NewTree(Item item, link l, link r)
 {
@@ -168,4 +169,13 @@ link AVLbalance(link h)
      
     return h;
     
+}
+
+void traverse(link h)
+{
+ if (h == NULL)
+ return;
+ printf("hash:%s oc:%d\n", h->item.tag, h->item.count);
+ traverse(h->l);
+ traverse(h->r);
 }
