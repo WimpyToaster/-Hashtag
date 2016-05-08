@@ -23,7 +23,7 @@ int main()
   char input = 'U'; /* Inicialiazada a 'U' para entrar no ciclo
              apenas 1 vez. Não corresponde a nenhuma
              funcao. */
-  int i; 
+  //int i; 
   Total_Hashtags = 0;
   Total_Ocorrencias = 0;
              
@@ -52,10 +52,11 @@ int main()
         
         case 'l':   
           //Imprime todas as Hashtags e respetivos n de ocorrencias por ordem decrescente (em caso de empate, por ordem alfabetica)
-          for (i = 0; i < Total_Hashtags; ++i)
+          /*for (i = 0; i < Total_Hashtags; ++i)
           {
             //printf("%s %d\n", v[i], v[i]);
-          }
+          } */
+          traverse(global_h);
           break;
                     
           
@@ -86,7 +87,7 @@ void split(char *line)
       {
         token[i] = tolower(token[i]);
       } 
-           
+
       avalia_hash(token); // Confirmar se a hashtag foi inserido ou se ja exestia, no caso de ser inserido incrementa o Total_Hashtags
     }
     token = strtok(NULL, separators);
