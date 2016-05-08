@@ -1,5 +1,9 @@
+#ifndef _ARVOREBINARIA_
+#define _ARVOREBINARIA_
+
 #include "Item.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct node {
 	
@@ -21,3 +25,6 @@ link rotLR(link h);
 link rotRL(link h);
 int Balance(link h);
 link AVLbalance(link h);
+void traverse(link h);
+
+#endif
