@@ -1,6 +1,3 @@
-#ifndef _ARVOREBINARIA_
-#define _ARVOREBINARIA_
-
 #include "Item.h"
 #include <stdlib.h>
 
@@ -24,5 +21,3 @@ link rotLR(link h);
 link rotRL(link h);
 int Balance(link h);
 link AVLbalance(link h);
-
-#endif
