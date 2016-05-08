@@ -1,6 +1,3 @@
-#ifndef _ITEM_
-#define _ITEM_
-
 #include <string.h>
 
 #define eq(a,b) (strcmp(a.tag, b.tag) == 0)
@@ -14,5 +11,3 @@ typedef struct Hashtag{
 	char *tag;
 	
 }Item;
-
-#endif
