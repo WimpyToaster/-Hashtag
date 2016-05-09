@@ -1,5 +1,4 @@
 #include "ArvoreBinaria.h"
-#include "Item.h"
 
 link NewTree(Item item, link l, link r)
 {
