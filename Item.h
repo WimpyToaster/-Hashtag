@@ -6,8 +6,7 @@
 	
 typedef struct Hashtag{
 	
-	int count;	
-	int height;
+	int count;
 	char *tag;
 	
 }Item;
