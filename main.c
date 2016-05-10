@@ -12,7 +12,7 @@
 int Total_Hashtags;
 int Total_Ocorrencias; // Counting Sort na Arvore    ->    M = Total_Ocorrencias
 Item Maior;
-link global_h = NULL;
+link global_h;
 static const char separators[] = {' ', '\t',',',';','.','?','!','"','\n',':','\0'};
 
  
@@ -24,19 +24,23 @@ int main()
              apenas 1 vez. Não corresponde a nenhuma
              funcao. */
   //int i; 
+  global_h = NULL;
   Total_Hashtags = 0;
   Total_Ocorrencias = 0;
              
   char mensagem[MAX + 1];
       
-    while ((input=getchar()) != 'x')
+    while (input != 'k')
     {
-                    
+      
+      fgets(mensagem, MAX + 1, stdin);
+      input = mensagem[0];
+
+      
       switch (input)
       {
         case 'a':
           // Recebe a linha introduzida e divide-a em palavras separadas, selecionando os Hashtags
-          fgets(mensagem, MAX + 1, stdin);
           split(mensagem);        
           break;
         
@@ -47,7 +51,7 @@ int main()
         
         case 'm':  
           
-          printf("%s %d\n",  Maior.tag, Maior.count);
+          printf("%s %d\n",  Maior->tag, Maior->count);
           break;
         
         case 'l':   
@@ -56,9 +60,18 @@ int main()
           {
             //printf("%s %d\n", v[i], v[i]);
           } */
-          traverse(global_h);
+          
           break;
-                    
+        
+        case 'x':
+
+          free_tree(global_h);
+
+          input = 'k';
+          break;
+
+      default:
+        printf("Comando nao reconhecido, por favor reintroduza a operacao.\n");         
           
       
         
@@ -75,7 +88,7 @@ void split(char *line)
 {
   
   char *token = strtok(line, separators);
-   while(token != NULL) 
+  while(token != NULL)
   {
     if(token[0] == '#')
     {
@@ -87,8 +100,8 @@ void split(char *line)
       {
         token[i] = tolower(token[i]);
       } 
-
-      avalia_hash(token); // Confirmar se a hashtag foi inserido ou se ja exestia, no caso de ser inserido incrementa o Total_Hashtags
+      
+      avalia_hash(token, strlen(token)); // Confirmar se a hashtag foi inserido ou se ja exestia, no caso de ser inserido incrementa o Total_Hashtags
     }
     token = strtok(NULL, separators);
   }
