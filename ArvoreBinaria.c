@@ -170,11 +170,13 @@ link AVLbalance(link h)
     
 }
 
-void traverse(link h)
+void free_tree(link h)
 {
  if (h == NULL)
  return;
- printf("hash:%s oc:%d\n", h->item.tag, h->item.count);
- traverse(h->l);
- traverse(h->r);
+ 
+ free_tree(h->l);
+ free_tree(h->r);
+ free(h->item);
+ free(h);
 }
