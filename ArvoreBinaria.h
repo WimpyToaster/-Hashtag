@@ -25,6 +25,6 @@ link rotLR(link h);
 link rotRL(link h);
 int Balance(link h);
 link AVLbalance(link h);
-void traverse(link h);
+void free_tree(link h);
 
 #endif
