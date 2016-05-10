@@ -7,12 +7,14 @@
 
 #define NUMSEP 11
 #define MAX 140
-
+#define INIT 100
 
 int Total_Hashtags;
 int Total_Ocorrencias; // Counting Sort na Arvore    ->    M = Total_Ocorrencias
 Item Maior;
 link global_h;
+Item *vec_ord;
+int len_vec = INIT;
 static const char separators[] = {' ', '\t',',',';','.','?','!','"','\n',':','\0'};
 
  
@@ -23,11 +25,13 @@ int main()
   char input = 'U'; /* Inicialiazada a 'U' para entrar no ciclo
              apenas 1 vez. Não corresponde a nenhuma
              funcao. */
-  //int i; 
+  int i; 
   global_h = NULL;
   Total_Hashtags = 0;
   Total_Ocorrencias = 0;
-             
+
+  vec_ord = (Item*) malloc(sizeof(Item)*INIT);
+               
   char mensagem[MAX + 1];
       
     while (input != 'k')
@@ -56,16 +60,18 @@ int main()
         
         case 'l':   
           //Imprime todas as Hashtags e respetivos n de ocorrencias por ordem decrescente (em caso de empate, por ordem alfabetica)
-          /*for (i = 0; i < Total_Hashtags; ++i)
+          //qsort(vec_ord, Total_Hashtags, sizeof(Item), FALTA ISTO!!!!);
+          for (i = 0; i < Total_Hashtags; ++i)
           {
-            //printf("%s %d\n", v[i], v[i]);
-          } */
+            printf("%s %d\n", vec_ord[i]->tag, vec_ord[i]->count);
+          } 
           
           break;
         
         case 'x':
 
           free_tree(global_h);
+          free(vec_ord);
 
           input = 'k';
           break;
