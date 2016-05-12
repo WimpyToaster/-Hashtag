@@ -11,7 +11,7 @@
 
 int Total_Hashtags;
 int Total_Ocorrencias; // Counting Sort na Arvore    ->    M = Total_Ocorrencias
-Item Maior;
+Item Maior = NULL;
 link global_h;
 Item *vec_ord;
 int len_vec = INIT;
@@ -54,18 +54,22 @@ int main()
           break;
         
         case 'm':  
-          
-          printf("%s %d\n",  Maior->tag, Maior->count);
+          if(Maior != NULL)
+            printf("%s %d\n",  Maior->tag, Maior->count);
           break;
         
         case 'l':   
           //Imprime todas as Hashtags e respetivos n de ocorrencias por ordem decrescente (em caso de empate, por ordem alfabetica)
-          //qsort(vec_ord, Total_Hashtags, sizeof(Item), FALTA ISTO!!!!);
+          if(Total_Hashtags > 0)
+          {
+          sort();
+          
           for (i = 0; i < Total_Hashtags; ++i)
           {
             printf("%s %d\n", vec_ord[i]->tag, vec_ord[i]->count);
           } 
           
+          }
           break;
         
         case 'x':
