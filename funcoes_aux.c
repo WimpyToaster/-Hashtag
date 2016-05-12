@@ -26,9 +26,6 @@ void avalia_hash(char *token, int size_str)
 			hash->count = 1;
 			global_h = insert(global_h, hash);
 			Total_Hashtags++;
-			
-			
-
 			insert_vec_ord(hash);
 			
 			if(Maior->count == 1)
@@ -44,7 +41,8 @@ void avalia_hash(char *token, int size_str)
 
 			if(existe->item->count > Maior->count)
 				Maior = existe->item;
-
+			free(hash->tag);
+			free(hash);
 		}
 	}
 }
@@ -53,15 +51,32 @@ void avalia_hash(char *token, int size_str)
 
 void insert_vec_ord(Item item)
 {
-	if (Total_Hashtags >= len_vec)
+	if (Total_Hashtags == len_vec)
 	{
+		
 		vec_ord = (Item*) realloc(vec_ord, (len_vec+100)); 
 		len_vec += 100;
+
 	}
 
 	vec_ord[Total_Hashtags-1] = item;
 }
 
+void sort()
+{
+	qsort(vec_ord, Total_Hashtags, sizeof(Item), cmp_item);
+}
+
+int cmp_item(const void *i, const void *j)
+{
+	Item my_i = *(Item*)i;
+	Item my_j = *(Item*)j;
+
+	if(my_i->count == my_j->count)
+		return strcmp(my_i->tag, my_j->tag);
+
+	return my_j->count - my_i->count;
+}
 
 /* 
 
