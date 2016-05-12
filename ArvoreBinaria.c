@@ -177,6 +177,7 @@ void free_tree(link h)
  
  free_tree(h->l);
  free_tree(h->r);
+ free(h->item->tag);
  free(h->item);
  free(h);
 }
