@@ -2,6 +2,8 @@
 #include "Item.h"
 #include "ArvoreBinaria.h"
 
+#define INIT 100
+
 void avalia_hash(char *token, int size_str)
 {
 
@@ -23,7 +25,6 @@ void avalia_hash(char *token, int size_str)
 		
 		if(existe == NULL)
 		{
-			hash->count = 1;
 			global_h = insert(global_h, hash);
 			Total_Hashtags++;
 			insert_vec_ord(hash);
@@ -41,6 +42,13 @@ void avalia_hash(char *token, int size_str)
 
 			if(existe->item->count > Maior->count)
 				Maior = existe->item;
+			if (Maior->count == existe->item->count)
+			{
+				if (strcmp(Maior->tag, existe->item->tag) > 0)
+					Maior = existe->item;
+			}
+			
+
 			free(hash->tag);
 			free(hash);
 		}
@@ -54,9 +62,9 @@ void insert_vec_ord(Item item)
 	if (Total_Hashtags == len_vec)
 	{
 		
-		vec_ord = (Item*) realloc(vec_ord, (len_vec+100)); 
-		len_vec += 100;
-
+		vec_ord = (Item*) realloc(vec_ord, sizeof(Item)*(len_vec+INIT)); 
+		len_vec += INIT;
+		
 	}
 
 	vec_ord[Total_Hashtags-1] = item;
@@ -78,31 +86,40 @@ int cmp_item(const void *i, const void *j)
 	return my_j->count - my_i->count;
 }
 
-/* 
+/*
+void tree_to_vec(link h)
+{
 
+	if (h == NULL)
+		return;
+ 
+	free_tree(h->l);
+	insert_vec_ord(h->item);
+	free_tree(h->r);
+	
+}*/
+
+/* 
 para chamar: 
 bucket_sort(vec_ord, Total_Hashtags, Maior->count);
-
 * isto so convem ser testado depois de o programa estar
 * completamente funcional, tem de se remover todas as
 * insercoes de Item's no vec_ord e fazer uma funcao que
 * faca isso a partir da arvore 
 * (esta é prototipo nao consegui testar por causa 
-*      de memory leaks) 		
-
+*      de memory leaks) 	
 void tree_to_vec(link h)
 {
 	if (h == NULL)
 		return;
  
 	free_tree(h->l);
-	free_tree(h->r);
 	insert_vec_ord(h->item);
+	free_tree(h->r);
+	
 }
-
 * alem disso nao ha muitas garantias que este bucket funcione
 * apesar de ja ter testado um bom bocado.
-
 void bucket_sort(Item *a, int nr_hash, int M)
 {
 	int i;
@@ -122,12 +139,9 @@ void bucket_sort(Item *a, int nr_hash, int M)
 	{
 		a[i] = b[(nr_hash - 1) - i]; 
 		 
-		// isto eh debug!!!! 
-		printf("tag:%s\ncount:%d\n\n",a[i]->tag,a[i]->count);
 	}
 	
 	free(b);
 	free(cnt);
-
 }
 */
