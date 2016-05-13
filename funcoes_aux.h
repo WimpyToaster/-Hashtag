@@ -15,8 +15,8 @@ void insert_vec_ord(Item item);
 void avalia_hash(char *token, int size_str);
 void sort();
 int cmp_item(const void *i, const void *j);
-//void tree_to_vec(link h);
+void tree_to_vec(link h);
 //void bucket_sort(Item *a, int nr_hash, int M);
 
-#endif
 
+#endif
