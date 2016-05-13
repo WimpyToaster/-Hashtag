@@ -23,6 +23,7 @@ link search(link h, Item v)
     
   if (less(v, h->item)) 
     return search(h->l, v); 
+  
   else
     return search(h->r, v);
     
@@ -34,7 +35,7 @@ link insert(link h, Item item)
    
    if (h == NULL)  
       return NewTree(item, NULL, NULL); 
-   
+
    if (less(item, h->item)) 
       h->l = insert(h->l, item); 
    else 
@@ -49,20 +50,11 @@ link insert(link h, Item item)
 
 int height(link h)
 { 
-
-	int u, v;  
-    
-    if (h == NULL)
-        return 0; 
-	u = height(h->l);  
-	v = height(h->r);  
-    
-    if (u > v)
-        return u+1;  
-    else       
-        return v+1; 
-
+  if (h==NULL)
+    return 0;
+  return h->height;
 }
+
 
 link rotL(link h)  
 { 
@@ -77,7 +69,7 @@ link rotL(link h)
     height_right = height(h->r); 
     h->height = height_left > height_right ? height_left + 1 : height_right + 1;
     
-	height_left = height(h->l); 
+	height_left = height(x->l); 
 	height_right = height(x->r); 
     x->height = height_left > height_right ? height_left + 1 : height_right + 1; 
     
@@ -98,7 +90,7 @@ link rotR(link h)
     h->height = height_left > height_right ?  height_left + 1 : height_right + 1;
      
 	height_left = height(x->l); 
-	height_right = height(h->r); 
+	height_right = height(x->r); 
     x->height = height_left > height_right ?  height_left + 1 : height_right + 1; 
     
     return x;  
