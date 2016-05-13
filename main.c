@@ -5,7 +5,6 @@
 #include "funcoes_aux.h"
 #include "Item.h"
 
-#define NUMSEP 11
 #define MAX 140
 #define INIT 100
 
@@ -31,6 +30,7 @@ int main()
   Total_Ocorrencias = 0;
 
   vec_ord = (Item*) malloc(sizeof(Item)*INIT);
+  
                
   char mensagem[MAX + 1];
       
@@ -62,13 +62,14 @@ int main()
           //Imprime todas as Hashtags e respetivos n de ocorrencias por ordem decrescente (em caso de empate, por ordem alfabetica)
           if(Total_Hashtags > 0)
           {
-          sort();
+
+            sort();
           
-          for (i = 0; i < Total_Hashtags; ++i)
-          {
-            printf("%s %d\n", vec_ord[i]->tag, vec_ord[i]->count);
-          } 
-          
+            for (i = 0; i < Total_Hashtags; ++i)
+            {
+              printf("%s %d\n", vec_ord[i]->tag, vec_ord[i]->count);
+            } 
+            
           }
           break;
         
@@ -76,6 +77,7 @@ int main()
 
           free_tree(global_h);
           free(vec_ord);
+          
 
           input = 'k';
           break;
